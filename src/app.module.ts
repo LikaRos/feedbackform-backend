@@ -4,7 +4,9 @@ import { AppController } from '@app/app.controller';
 import { AppService } from '@app/app.service';
 import { TagModule } from '@app/tag/tag.module';
 import { ConfigModule } from '@nestjs/config';
-import { TagEntity } from './tag/tag.entity';
+import { TagEntity } from '@app/tag/tag.entity';
+import { UserModule } from '@app/user/user.module';
+import { UserEntity } from '@app/user/user.entity';
 
 @Module({
   imports: [
@@ -17,11 +19,13 @@ import { TagEntity } from './tag/tag.entity';
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        entities: [TagEntity],
+        entities: [TagEntity, UserEntity], //entities: [__dirname + '/**/ */.entity{.ts,.js}']
         synchronize: true,
+
+               
       }),
     }),
-    TagModule,
+    TagModule, UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
