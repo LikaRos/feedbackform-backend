@@ -8,13 +8,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 export class UserService{
       constructor (@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>){}
-      async createUser(createUserDto: CreateUserDto) {
+      async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
           const newUser = new UserEntity();
           Object.assign(newUser, createUserDto);
-          console.log('newUser', newUser);
-          console.log(typeof newUser);
-          
-          
+                 
             return await this.userRepository.save(newUser);
+      }
+      buildUserResponse(user: UserEntity): any {
+            return {
+                  user: {
+                        ...user
+                  }
+            }
       }
 }
