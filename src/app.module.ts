@@ -13,10 +13,12 @@ import { UserEntity } from '@app/user/user.entity';
       useFactory: () => ({
         type: 'mysql',
         host: process.env.DB_HOST,
+        port: parseInt(process.env.DB_PORT) || 3306,
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         entities: [UserEntity], //entities: [__dirname + '/**/ */.entity{.ts,.js}']
+        socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
         synchronize: true,
 
                
