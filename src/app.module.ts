@@ -18,7 +18,6 @@ import { UserEntity } from '@app/user/user.entity';
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         entities: [UserEntity], //entities: [__dirname + '/**/ */.entity{.ts,.js}']
-        socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
         synchronize: true,
 
                
