@@ -2,9 +2,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { AppController } from '@app/app.controller';
 import { AppService } from '@app/app.service';
-import { TagModule } from '@app/tag/tag.module';
 import { ConfigModule } from '@nestjs/config';
-import { TagEntity } from '@app/tag/tag.entity';
 import { UserModule } from '@app/user/user.module';
 import { UserEntity } from '@app/user/user.entity';
 
@@ -19,13 +17,13 @@ import { UserEntity } from '@app/user/user.entity';
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        entities: [TagEntity, UserEntity], //entities: [__dirname + '/**/ */.entity{.ts,.js}']
+        entities: [UserEntity], //entities: [__dirname + '/**/ */.entity{.ts,.js}']
         synchronize: true,
 
                
       }),
-    }),
-    TagModule, UserModule,
+    }), 
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
